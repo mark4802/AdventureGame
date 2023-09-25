@@ -1,4 +1,6 @@
 public class Room {
 
-    String
+    private
+
+
 }

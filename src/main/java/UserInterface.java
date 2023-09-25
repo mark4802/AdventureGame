@@ -9,6 +9,11 @@ public class UserInterface {
         case East -> System.out.println("Going East");
         case South -> System.out.println("Going South");
         case West -> System.out.println("Going South");
+        break;
+
+        default -> System.out.println("You can´t go that way");
+
+
 
     }
 
