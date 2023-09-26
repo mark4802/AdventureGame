@@ -1,16 +1,36 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class UserInterface {
-    Scanner Keyboard = new Scanner(System.in);
+    Scanner keyboard = new Scanner(System.in);
+    Adventure adventure = new Adventure();
 
-    switch (Room1) {
-        case North -> System.out.println("Going North");
-        case East -> System.out.println("Going East");
-        case South -> System.out.println("Going South");
-        case West -> System.out.println("Going South");
-
+    public void startGame() {
+        System.out.println("TEST " + adventure.getCurrentRoom().getDescription());
+        processCommand();
     }
 
 
+    public void processCommand() {
+
+        boolean programRunning = true;
+
+        do {
+            System.out.print(">");
+            String userChoice = keyboard.nextLine();
+            System.out.println(userChoice);
+            switch (userChoice) {
+                case "go north" -> System.out.println("Gone North");
+                case "go south" -> {
+                    System.out.println("Gone South");
+                    adventure.goSouth();
+                    System.out.println(adventure.getCurrentRoom().getDescription());
+                }
+                case "go east" -> adventure.goEast();
+                case "go west" -> adventure.goWest();
+                case "look" -> System.out.println("Looking around");
+                case "exit" -> programRunning = false;
+                default -> adventure.notValidWay();
+            }
+        } while (programRunning);
+    }
 }
