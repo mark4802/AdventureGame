@@ -5,7 +5,7 @@ public class UserInterface {
     Adventure adventure = new Adventure();
 
     public void startGame() {
-        System.out.println("TEST " + adventure.getCurrentRoom().getDescription());
+        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription());
         processCommand();
     }
 
@@ -15,21 +15,16 @@ public class UserInterface {
         boolean programRunning = true;
 
         do {
-            System.out.print(">");
-            String userChoice = keyboard.nextLine();
-            System.out.println(userChoice);
+            String userInput = keyboard.nextLine().toLowerCase();
+            String userChoice = userInput.replace("go", "").replace("around", "").trim();
             switch (userChoice) {
-                case "go north" -> System.out.println("Gone North");
-                case "go south" -> {
-                    System.out.println("Gone South");
-                    adventure.goSouth();
-                    System.out.println(adventure.getCurrentRoom().getDescription());
-                }
-                case "go east" -> adventure.goEast();
-                case "go west" -> adventure.goWest();
-                case "look" -> System.out.println("Looking around");
+                case "north" -> adventure.goNorth();
+                case "south" -> adventure.goSouth();
+                case "east" -> adventure.goEast();
+                case "west" -> adventure.goWest();
+                case "look" -> System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription());
                 case "exit" -> programRunning = false;
-                default -> adventure.notValidWay();
+                default -> System.out.println("Invalid command");
             }
         } while (programRunning);
     }
