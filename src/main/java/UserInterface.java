@@ -2,10 +2,12 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner keyboard = new Scanner(System.in);
-    Adventure adventure = new Adventure();
+    Map map = new Map();
+    Player player = new Player();
+
 
     public void startGame() {
-        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription());
+        System.out.println(map.getCurrentRoom().getName() + ": " + map.getCurrentRoom().getDescription());
         processCommand();
     }
 
@@ -16,13 +18,14 @@ public class UserInterface {
 
         do {
             String userInput = keyboard.nextLine().toLowerCase();
-            String userChoice = userInput.replace("go", "").replace("around", "").trim();
+            String userChoice = userInput.replace("go", "").replace("around", "").replace("item", "").trim();
             switch (userChoice) {
-                case "north" -> adventure.goNorth();
-                case "south" -> adventure.goSouth();
-                case "east" -> adventure.goEast();
-                case "west" -> adventure.goWest();
-                case "look" -> System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription());
+                case "north" -> map.goNorth();
+                case "south" -> map.goSouth();
+                case "east" -> map.goEast();
+                case "west" -> map.goWest();
+                case "look" -> System.out.println(map.getCurrentRoom().getName() + ": " + map.getCurrentRoom().getDescription());
+                case "take" -> player.takeItem();
                 case "exit" -> programRunning = false;
                 default -> System.out.println("Invalid command");
             }
