@@ -54,7 +54,7 @@ public class Map {
 
 
         room1.addItem("Key", "An old and rusty key, its purpose unclear.");
-        room2.addItem("Torch", "A torch with a flickering flame, casting eerie shadows.");
+       // room2.addItem("Torch", "A torch with a flickering flame, casting eerie shadows.");
         room3.addItem("Map", "A torn map revealing hidden pathways.");
         room4.addItem("Crystal", "A radiant crystal with an otherworldly glow.");
         room5.addItem("Amulet", "An amulet pulsating with mystical energy.");
@@ -72,6 +72,8 @@ public class Map {
             currentRoom = currentRoom.getNorth();
             System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
             System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
         }
     }
 
@@ -82,6 +84,8 @@ public class Map {
             currentRoom = currentRoom.getSouth();
             System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
             System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
         }
     }
 
@@ -92,6 +96,8 @@ public class Map {
             currentRoom = currentRoom.getEast();
             System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
             System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
         }
     }
 
@@ -102,6 +108,8 @@ public class Map {
             currentRoom = currentRoom.getWest();
             System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
             System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
         }
     }
 
