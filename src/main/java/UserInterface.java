@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner keyboard = new Scanner(System.in);
-    Map map = new Map();
-    Player player = new Player();
+    //Map map = new Map();
+    //Player player = new Player(map.getCurrentRoom());
+    Adventure adventure = new Adventure();
 
 
     public void startGame() {
-        System.out.println(map.getCurrentRoom().getName() + ": " + map.getCurrentRoom().getDescription());
+        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription());
         processCommand();
     }
 
@@ -22,25 +23,25 @@ public class UserInterface {
             String argument = userCommands.length > 1 ? userCommands[1].trim() : "";
 
             switch (command) {
-                case "north", "n" -> map.goNorth();
-                case "south", "s" -> map.goSouth();
-                case "east", "e" -> map.goEast();
-                case "west", "w" -> map.goWest();
-                case "look" -> System.out.println(map.getCurrentRoom().getName() + ": " + map.getCurrentRoom().getDescription());
+                case "north", "n" -> adventure.goNorth();
+                case "south", "s" -> adventure.goSouth();
+                case "east", "e" -> adventure.goEast();
+                case "west", "w" -> adventure.goWest();
+                case "look" ->
+                        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription() + adventure.getCurrentRoom().getItems());
                 case "take" -> {
-                    Item itemToTake = findItemInCurrentRoom(argument);
-                    if (itemToTake != null) {
-                        player.takeItem(itemToTake);
-                        map.getCurrentRoom().removeItem(itemToTake);
+                    boolean itemToTake = adventure.takeItem(argument);
+                    if (itemToTake) {
+                        System.out.println("You can take that item");
                     } else {
                         System.out.println("No such item in this room.");
                     }
                 }
+
                 case "drop" -> {
                     Item itemToDrop = findItemInPlayerInventory(argument);
                     if (itemToDrop != null) {
-                        player.dropItem(itemToDrop);
-                        map.getCurrentRoom().addItem(itemToDrop.getName(), itemToDrop.getDescription());
+                        adventure.dropItem(itemToDrop);
                     } else {
                         System.out.println("You don't have that item.");
                     }
@@ -53,7 +54,7 @@ public class UserInterface {
     }
 
     private Item findItemInCurrentRoom(String itemName) {
-        for (Item item : map.getCurrentRoom().getItems()) {
+        for (Item item : adventure.getCurrentRoom().getItems()) {
             if (item.getName().equalsIgnoreCase(itemName)) {
                 return item;
             }
@@ -62,7 +63,7 @@ public class UserInterface {
     }
 
     private Item findItemInPlayerInventory(String itemName) {
-        for (Item item : player.getInventory()) {
+        for (Item item : adventure.getInventory()) {
             if (item.getName().equalsIgnoreCase(itemName)) {
                 return item;
             }

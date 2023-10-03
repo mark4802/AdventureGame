@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Room {
 
+    private ArrayList<Food> food;
     private ArrayList<Item> items;
     private String name;
     private String description;
@@ -19,6 +20,7 @@ public class Room {
         this.east = null;
         this.west = null;
         this.items = new ArrayList<>();
+        this.food = new ArrayList<>();
 
     }
 
@@ -64,8 +66,8 @@ public class Room {
     }
 
 
-    public void addItem(String name, String description) {
-        this.items.add(new Item(name, description));
+    public void addItem(Item item) {
+        items.add(item);
     }
 
     public ArrayList<Item> getItems() {

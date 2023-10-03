@@ -19,7 +19,6 @@ public class Item {
         return description;
     }
 
-    @Override
     public String toString() {
         return "Items in this room: " + name + "\nItem description: " + description;
     }
