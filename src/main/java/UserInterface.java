@@ -2,13 +2,15 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner keyboard = new Scanner(System.in);
-    //Map map = new Map();
-    //Player player = new Player(map.getCurrentRoom());
+
     Adventure adventure = new Adventure();
 
 
     public void startGame() {
         System.out.println("Welcome to the Adventure Game! You're currently in Room 1");
+        System.out.println();
+        System.out.println("Type (help) to see commands");
+        System.out.println();
         System.out.println(adventure.getCurrentRoom().getItems());
         processCommand();
     }
@@ -33,7 +35,7 @@ public class UserInterface {
                 case "take" -> {
                     boolean itemToTake = adventure.takeItem(argument);
                     if (itemToTake) {
-                        System.out.println("You can take that item");
+                        System.out.println("You took " + argument);
                     } else {
                         System.out.println("No such item in this room.");
                     }
@@ -50,18 +52,19 @@ public class UserInterface {
                 }
                 case "inventory" -> System.out.println("Inventory: " + player.getInventory());
                 case "exit" -> programRunning = false;
+                case "help" -> System.out.println("""
+                        Type North, South, East or West (n, s, e, w) to go in either direction.
+                        Type "Take" in order to pick up items from a certain room.
+                        Type "Drop" in order to drop an item from your inventory.
+                        Type "Inventory" or "Inv" to view your inventory.
+                        Type "Eat" in order to eat a food item from your inventory.
+                        Type "Look" to see which room you're currently in, along with a description.
+                        Type "Health" to see your current health.
+                        Type "Exit" to close the game.
+                        """);
                 default -> System.out.println("Invalid command");
             }
         } while (programRunning);
-    }
-
-    private Item findItemInCurrentRoom(String itemName) {
-        for (Item item : adventure.getCurrentRoom().getItems()) {
-            if (item.getName().equalsIgnoreCase(itemName)) {
-                return item;
-            }
-        }
-        return null;
     }
 
     private Item findItemInPlayerInventory(String itemName) {
