@@ -50,7 +50,8 @@ public class UserInterface {
                         System.out.println("You don't have that item.");
                     }
                 }
-                case "inventory" -> System.out.println("Inventory: " + player.getInventory());
+                case "inventory", "inv" -> System.out.println("Inventory: " + adventure.getInventory());
+                case "health" -> adventure.showHealth();
                 case "exit" -> programRunning = false;
                 case "help" -> System.out.println("""
                         Type North, South, East or West (n, s, e, w) to go in either direction.
