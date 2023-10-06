@@ -1,10 +1,10 @@
 public class Map {
 
-    private Room currentRoom;
+    private Room initialRoom;
     //Player player = new Player(currentRoom);
 
-    public Room getCurrentRoom() {
-        return currentRoom;
+    public Room getInitialRoom() {
+        return initialRoom;
     }
 
     public Map() {
@@ -51,7 +51,7 @@ public class Map {
         room4.setSouth(room7);
         room4.setNorth(room1);
 
-        currentRoom = room1;
+        initialRoom = room1;
 
 
         room1.addItem(new Item("Key", "An old and rusty key, its purpose unclear."));
@@ -71,75 +71,8 @@ public class Map {
         room5.addItem(new Food("Apple", "pas på", -100));
         room6.addItem(new Food("Strange Fruit", "oh yeaaa", -20));
         room7.addItem(new Food("Beef", "god bøf", 20));
-        room8.addItem(new Food("Oatmeal", "bowl of oatmeal" , 30));
-        room9.addItem(new Food("Burger", "max power" , 30));
+        room8.addItem(new Food("Oatmeal", "bowl of oatmeal", 30));
+        room9.addItem(new Food("Burger", "max power", 30));
 
-
-    }
-
-    public void goNorth() {
-        if (currentRoom.getNorth() == null)
-            System.out.println("You can't go that way");
-        else {
-            currentRoom = currentRoom.getNorth();
-            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
-            System.out.println(getCurrentRoom().getItems());
-            if (currentRoom.getItems().isEmpty())
-                System.out.println("There are no items in this room.");
-//            System.out.println(getCurrentRoom().getFood());
-//            if (currentRoom.getFood().isEmpty())
-//                System.out.println("There is no food in here.");
-        }
-    }
-
-    public void goSouth() {
-        if (currentRoom.getSouth() == null)
-            System.out.println("You can't go that way");
-        else {
-            currentRoom = currentRoom.getSouth();
-            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
-            System.out.println(getCurrentRoom().getItems());
-            if (currentRoom.getItems().isEmpty())
-                System.out.println("There are no items in this room.");
-            /*System.out.println(getCurrentRoom().getFood());
-            if (currentRoom.getFood().isEmpty())
-                System.out.println("There is no food in here.");
-
-             */
-        }
-    }
-
-    public void goEast() {
-        if (currentRoom.getEast() == null)
-            System.out.println("You can't go that way");
-        else {
-            currentRoom = currentRoom.getEast();
-            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
-            System.out.println(getCurrentRoom().getItems());
-            if (currentRoom.getItems().isEmpty())
-                System.out.println("There are no items in this room.");
-           /* System.out.println(getCurrentRoom().getFood());
-            if (currentRoom.getFood().isEmpty())
-                System.out.println("There is no food in here.");
-
-            */
-        }
-    }
-
-    public void goWest() {
-        if (currentRoom.getWest() == null)
-            System.out.println("You can't go that way");
-        else {
-            currentRoom = currentRoom.getWest();
-            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
-            System.out.println(getCurrentRoom().getItems());
-            if (currentRoom.getItems().isEmpty())
-                System.out.println("There are no items in this room.");
-            /*System.out.println(getCurrentRoom().getFood());
-            if (currentRoom.getFood().isEmpty())
-                System.out.println("There is no food in here.");
-
-             */
-        }
     }
 }

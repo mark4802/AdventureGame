@@ -37,6 +37,7 @@ public class UserInterface {
                         System.out.println("No such item in this room.");
                     }
                 }
+                case "eat" -> adventure.eat(argument);
 
                 case "drop" -> {
                     Item itemToDrop = findItemInPlayerInventory(argument);

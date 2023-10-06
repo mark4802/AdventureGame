@@ -15,11 +15,9 @@ public class Item {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String toString() {
         return "Items in this room: " + name + "\nItem description: " + description;
     }
+
+
 }

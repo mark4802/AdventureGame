@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Adventure {
 
     Map map = new Map();
-    private  Player player = new Player(map.getCurrentRoom());
+    private Player player = new Player(map.getInitialRoom());
 
 
     public Adventure() {
@@ -11,23 +11,23 @@ public class Adventure {
     }
 
     public Room getCurrentRoom() {
-        return map.getCurrentRoom();
+        return player.getCurrentRoom();
     }
 
     public void goNorth() {
-        map.goNorth();
+        player.goNorth();
     }
 
     public void goSouth() {
-        map.goSouth();
+        player.goSouth();
     }
 
     public void goEast() {
-        map.goEast();
+        player.goEast();
     }
 
     public void goWest() {
-        map.goWest();
+        player.goWest();
     }
 
     public boolean takeItem(String argument) {
@@ -44,5 +44,9 @@ public class Adventure {
 
     public void showHealth() {
         player.showHealth();
+    }
+
+    public boolean eat(String argument) {
+        return player.eat(argument);
     }
 }

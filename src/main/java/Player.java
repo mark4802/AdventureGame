@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Player {
     private int health = 100;
     private Room currentRoom;
+    private Food food;
 
     private ArrayList<Item> inventory;
 
@@ -11,23 +12,19 @@ public class Player {
         inventory = new ArrayList<>();
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
     public boolean takeItem(String itemName) {
         for (Item item : currentRoom.getItems()) {
             if (item.getName().toLowerCase().equals(itemName)) {
                 inventory.add(item);
-                currentRoom.removeItem(item);
-            } return true;
+                currentRoom.getItems().remove(item);
+                return true;
+            }
         }
-        return  false;
-    }
-
-    public void dropFood(Food food) {
-        inventory.remove(food);
-        System.out.println("You dropped the " + food.getName() + ".");
-    }
-    public void takeFood(Food food) {
-        inventory.add(food);
-        System.out.println("You took the " + food.getName() + ".");
+        return false;
     }
 
     public void dropItem(Item item) {
@@ -50,5 +47,62 @@ public class Player {
         } else if (health < 50) {
             System.out.println("Your health is low, take care!");
         }
+    }
+
+    public void goSouth() {
+        if (currentRoom.getSouth() == null)
+            System.out.println("You can't go that way");
+        else {
+            currentRoom = currentRoom.getSouth();
+            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
+            System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
+        }
+        System.out.println(currentRoom.getName());
+    }
+
+    public void goWest() {
+        if (currentRoom.getWest() == null)
+            System.out.println("You can't go that way");
+        else {
+            currentRoom = currentRoom.getWest();
+            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
+            System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
+        }
+    }
+
+    public void goEast() {
+        if (currentRoom.getEast() == null)
+            System.out.println("You can't go that way");
+        else {
+            currentRoom = currentRoom.getEast();
+            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
+            System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
+        }
+    }
+
+    public void goNorth() {
+        if (currentRoom.getNorth() == null)
+            System.out.println("You can't go that way");
+        else {
+            currentRoom = currentRoom.getNorth();
+            System.out.println(getCurrentRoom().getName() + ": " + getCurrentRoom().getDescription());
+            System.out.println(getCurrentRoom().getItems());
+            if (currentRoom.getItems().isEmpty())
+                System.out.println("There are no items in this room.");
+        }
+    }
+
+    public boolean eat(String itemName) {
+        for (Item item : inventory)
+            if (item.getName().toLowerCase().equals(itemName)) {
+                inventory.remove(item);
+                health = health + food.getHealthPoints();
+            } return false;
     }
 }
