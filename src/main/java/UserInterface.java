@@ -8,7 +8,8 @@ public class UserInterface {
 
 
     public void startGame() {
-        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription());
+        System.out.println("Welcome to the Adventure Game! You're currently in Room 1");
+        System.out.println(adventure.getCurrentRoom().getItems());
         processCommand();
     }
 

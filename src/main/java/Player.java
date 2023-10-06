@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Player {
     private int health = 100;
     private Room currentRoom;
-    private Food food;
 
     private ArrayList<Item> inventory;
 
@@ -59,7 +58,6 @@ public class Player {
             if (currentRoom.getItems().isEmpty())
                 System.out.println("There are no items in this room.");
         }
-        System.out.println(currentRoom.getName());
     }
 
     public void goWest() {
@@ -102,7 +100,8 @@ public class Player {
         for (Item item : inventory)
             if (item.getName().toLowerCase().equals(itemName)) {
                 inventory.remove(item);
-                health = health + food.getHealthPoints();
+                //health = health + item.getHealthPoints;
+                System.out.println(health);
             } return false;
     }
 }

@@ -60,16 +60,16 @@ public class Map {
         room4.addItem(new Item("Crystal", "A radiant crystal with an otherworldly glow."));
         room5.addItem(new Item("Amulet", "An amulet pulsating with mystical energy."));
         room6.addItem(new Item("Mushroom", "A glowing mushroom, lighting your way in the darkness."));
-        room7.addItem(new Item("Mirror Shard", "A shard from a polished mirror, shimmering with magic."));
+        room7.addItem(new Item("Mirror", "A shard from a polished mirror, shimmering with magic."));
         room8.addItem(new Item("Gear", "A perfectly crafted gear, intricate in design."));
         room9.addItem(new Item("Scarab", "A golden scarab beetle, a symbol of protection and fortune."));
 
         room1.addItem(new Food("Pancake", "pandekage", 20));
         room2.addItem(new Food("Ice Cream", "god is", 10));
-        room3.addItem(new Food("Mysterious Cookie", "mhmmmm", -40));
+        room3.addItem(new Food("Cookie", "mhmmmm", -40));
         room4.addItem(new Food("Chicken", "God kylling", 60));
         room5.addItem(new Food("Apple", "pas på", -100));
-        room6.addItem(new Food("Strange Fruit", "oh yeaaa", -20));
+        room6.addItem(new Food("Fruit", "oh yeaaa", -20));
         room7.addItem(new Food("Beef", "god bøf", 20));
         room8.addItem(new Food("Oatmeal", "bowl of oatmeal", 30));
         room9.addItem(new Food("Burger", "max power", 30));
