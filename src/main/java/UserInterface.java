@@ -16,6 +16,8 @@ public class UserInterface {
         processCommand();
     }
 
+    // Virk nu
+
 
     public void processCommand() {
         boolean programRunning = true;
