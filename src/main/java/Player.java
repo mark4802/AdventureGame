@@ -3,12 +3,14 @@ import java.util.ArrayList;
 public class Player {
     private int health = 100;
     private Room currentRoom;
-
     private ArrayList<Item> inventory;
+   // private Item FoodToBeRemoved = ;
+
 
 
     public Player(Room currentRoom) {
-        inventory = new ArrayList<>();
+        inventory = new ArrayList<>(2);
+        this.currentRoom = currentRoom;
     }
 
     public Room getCurrentRoom() {
