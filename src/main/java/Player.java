@@ -17,17 +17,19 @@ public class Player {
 
     public boolean takeItem(String itemName) {
         for (Item item : currentRoom.getItems()) {
-            if (item.getName().toLowerCase().equals(itemName)) {
+            if (item.getName().toLowerCase().equals(itemName) && inventory.size() < 3) {
                 inventory.add(item);
                 currentRoom.getItems().remove(item);
                 return true;
-            }
+            } else if (item.getName().toLowerCase().equals(itemName) && inventory.size() == 3)
+                System.out.println("Your inventory is full.");
         }
         return false;
     }
 
     public void dropItem(Item item) {
         inventory.remove(item);
+        currentRoom.addItem(item);
         System.out.println("You dropped the " + item.getName() + ".");
     }
 
@@ -100,7 +102,8 @@ public class Player {
         for (Item item : inventory)
             if (item.getName().toLowerCase().equals(itemName)) {
                 inventory.remove(item);
-                //health = health + item.getHealthPoints;
+                if (item instanceof Food food)
+                health = health + food.getHealthPoints();
                 System.out.println(health);
             } return false;
     }

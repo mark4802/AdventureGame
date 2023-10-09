@@ -15,7 +15,7 @@ public class Food extends Item {
 
     @Override
     public String toString() {
-        return "\n" + "Food in this room: " + getName();
+        return "\n" + "Food: " + getName();
     }
 
 }

@@ -16,7 +16,7 @@ public class Item {
     }
 
     public String toString() {
-        return "Items in this room: " + name + "\nItem description: " + description;
+        return "Items: " + name + ", " + description;
     }
 
 

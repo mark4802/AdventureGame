@@ -7,10 +7,11 @@ public class UserInterface {
 
 
     public void startGame() {
-        System.out.println("Welcome to the Adventure Game! You're currently in Room 1");
+        System.out.println("Welcome to the Adventure Game!");
         System.out.println();
         System.out.println("Type (help) to see commands");
         System.out.println();
+        System.out.println(adventure.getCurrentRoom().getName() + ". " + adventure.getCurrentRoom().getDescription());
         System.out.println(adventure.getCurrentRoom().getItems());
         processCommand();
     }
@@ -31,7 +32,7 @@ public class UserInterface {
                 case "east", "e" -> adventure.goEast();
                 case "west", "w" -> adventure.goWest();
                 case "look" ->
-                        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription() + adventure.getCurrentRoom().getItems());
+                        System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription() + "\n" + adventure.getCurrentRoom().getItems());
                 case "take" -> {
                     boolean itemToTake = adventure.takeItem(argument);
                     if (itemToTake) {
@@ -50,7 +51,7 @@ public class UserInterface {
                         System.out.println("You don't have that item.");
                     }
                 }
-                case "inventory", "inv" -> System.out.println("Inventory: " + adventure.getInventory());
+                case "inventory", "inv" -> System.out.println("Inventory: " + "\n" + adventure.getInventory());
                 case "health" -> adventure.showHealth();
                 case "exit" -> programRunning = false;
                 case "help" -> System.out.println("""
