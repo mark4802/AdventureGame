@@ -4,8 +4,7 @@ public class Player {
     private int health = 100;
     private Room currentRoom;
     private ArrayList<Item> inventory;
-   // private Item FoodToBeRemoved = ;
-
+    private Item FoodToBeRemoved = null;
 
 
     public Player(Room currentRoom) {
@@ -101,12 +100,17 @@ public class Player {
     }
 
     public boolean eat(String itemName) {
-        for (Item item : inventory)
+        for (Item item : inventory) {
             if (item.getName().toLowerCase().equals(itemName)) {
-                inventory.remove(item);
+                this.FoodToBeRemoved = item;
                 if (item instanceof Food food)
-                health = health + food.getHealthPoints();
-                System.out.println(health);
-            } return false;
+                    health = health + food.getHealthPoints();
+                System.out.println(health); //TODO ændr hvad den souter
+            }
+        }
+        if (FoodToBeRemoved != null) {
+            inventory.remove(FoodToBeRemoved);
+        }
+        return false;
     }
 }

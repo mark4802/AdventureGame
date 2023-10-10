@@ -36,6 +36,10 @@ public class UserInterface {
                 case "look" ->
                         System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription() + "\n" + adventure.getCurrentRoom().getItems());
                 case "take" -> {
+                    if (adventure.getInventory().size() == 3) { //TODO se lige på det her
+                        System.out.println("Your inventory is full.");
+                        break;
+                    }
                     boolean itemToTake = adventure.takeItem(argument);
                     if (itemToTake) {
                         System.out.println("You took " + argument);
