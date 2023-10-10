@@ -16,9 +16,6 @@ public class UserInterface {
         processCommand();
     }
 
-    // Virk nu
-
-
     public void processCommand() {
         boolean programRunning = true;
 
@@ -60,6 +57,7 @@ public class UserInterface {
                 case "inventory", "inv" -> System.out.println("Inventory: " + "\n" + adventure.getInventory());
                 case "health" -> adventure.showHealth();
                 case "exit" -> programRunning = false;
+                case "equip" -> adventure.equip(argument);
                 case "help" -> System.out.println("""
                         Type North, South, East or West (n, s, e, w) to go in either direction.
                         Type "Take" in order to pick up items from a certain room.
@@ -69,10 +67,13 @@ public class UserInterface {
                         Type "Look" to see which room you're currently in, along with a description.
                         Type "Health" to see your current health.
                         Type "Exit" to close the game.
+                        Type "Equip" to equip a weapon from to inventory.
                         """);
                 default -> System.out.println("Invalid command");
+
             }
-        } while (programRunning);
+        }
+        while (programRunning);
     }
 
     private Item findItemInPlayerInventory(String itemName) {

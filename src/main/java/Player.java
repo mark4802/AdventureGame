@@ -1,19 +1,29 @@
 import java.util.ArrayList;
 
 public class Player {
-    private int health = 100;
+    private int health;
     private Room currentRoom;
     private ArrayList<Item> inventory;
     private Item FoodToBeRemoved = null;
+    private Item RangedWeaponToBeRemoved = null;
+    private Item MeleeWeaponToBeRemoved = null;
 
 
     public Player(Room currentRoom) {
         inventory = new ArrayList<>(2);
         this.currentRoom = currentRoom;
+        this.health = 100;
     }
 
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public void playerDead() {
+        if (health <= 0) {
+            System.out.println("You died");
+            System.exit(0);
+        }
     }
 
     public boolean takeItem(String itemName) {
@@ -41,6 +51,7 @@ public class Player {
     public int getHealth() {
         return health;
     }
+
 
     public void showHealth() {
         System.out.println("Your health is: " + health);
@@ -101,16 +112,50 @@ public class Player {
 
     public boolean eat(String itemName) {
         for (Item item : inventory) {
-            if (item.getName().toLowerCase().equals(itemName)) {
-                this.FoodToBeRemoved = item;
-                if (item instanceof Food food)
+            if (item instanceof Food food)
+                if (item.getName().toLowerCase().equals(itemName)) {
+                    this.FoodToBeRemoved = item;
                     health = health + food.getHealthPoints();
-                System.out.println(health); //TODO ændr hvad den souter
-            }
+                    System.out.println("Your new current health: " + health);
+                }
         }
-        if (FoodToBeRemoved != null) {
+        if (health <= 0) {
+            System.out.println("You died");
+            System.exit(0);
+        }
+
+        if (FoodToBeRemoved != null)
             inventory.remove(FoodToBeRemoved);
-        }
+        else System.out.println("You can't eat that item.");
+
         return false;
     }
+
+    public void equip(String itemName) {
+        for (Item item : inventory) {
+            if (item instanceof RangedWeapon rangedWeapon)
+                if (item.getName().toLowerCase().equals(itemName)) {
+                    this.RangedWeaponToBeRemoved = item;
+                    System.out.println("You equipped " + itemName);
+                }
+        }
+        if (RangedWeaponToBeRemoved != null)
+            inventory.remove(RangedWeaponToBeRemoved);
+        else System.out.println("You can't equip that item.");
+
+
+        for (Item item : inventory) {
+            if (item instanceof MeleeWeapon meleeWeapon)
+                if (item.getName().toLowerCase().equals(itemName)) {
+                    this.MeleeWeaponToBeRemoved = item;
+                    System.out.println("You equipped " + itemName);
+                }
+        }
+        if (MeleeWeaponToBeRemoved != null)
+            inventory.remove(MeleeWeaponToBeRemoved);
+        else System.out.println("You can't equip that item.");
+
+    }
+
+
 }

@@ -73,4 +73,18 @@ public class Room {
     public ArrayList<Item> getItems() {
         return items;
     }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+
+    }
+
+    public void removeFood(Food food) {
+        items.remove(food);
+
+    }
+
+    public ArrayList<Food> getFood() {
+        return food;
+    }
 }

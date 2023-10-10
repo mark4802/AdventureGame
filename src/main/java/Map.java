@@ -1,7 +1,7 @@
 public class Map {
 
     private Room initialRoom;
-    //Player player = new Player(currentRoom);
+
 
     public Room getInitialRoom() {
         return initialRoom;
@@ -74,5 +74,7 @@ public class Map {
         room8.addItem(new Food("Oatmeal", "bowl of oatmeal", 30));
         room9.addItem(new Food("Burger", "max power", 30));
 
+        room2.addItem(new MeleeWeapon("Sword" , "sharp", 30));
+        room7.addItem(new RangedWeapon("Bow", "wood bow", 15, 10));
     }
 }

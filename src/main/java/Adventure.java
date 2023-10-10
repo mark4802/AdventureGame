@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Adventure {
 
     Map map = new Map();
-    private Player player = new Player(map.getInitialRoom());
+    Player player = new Player(map.getInitialRoom());
 
 
     public Adventure() {
@@ -48,5 +48,9 @@ public class Adventure {
 
     public boolean eat(String argument) {
         return player.eat(argument);
+    }
+
+    public void equip(String argument) {
+        player.equip(argument);
     }
 }
