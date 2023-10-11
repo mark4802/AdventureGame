@@ -53,4 +53,9 @@ public class Adventure {
     public void equip(String argument) {
         player.equip(argument);
     }
+
+    public void attack() {
+        player.attackRanged();
+        player.attackMelee();
+    }
 }

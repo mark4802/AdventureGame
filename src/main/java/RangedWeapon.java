@@ -1,7 +1,7 @@
 public class RangedWeapon extends Item {
     private final String name;
     private final int damage;
-    private final int ammo;
+    private int ammo;
 
     public RangedWeapon(String name, String description, int damage, int ammo) {
         super(name, description);
@@ -28,5 +28,9 @@ public class RangedWeapon extends Item {
                 name + ", " +
                 "Damage: " + damage + " " +
                 "Ammo: " + ammo;
+    }
+
+    public void setAmmo(int i) {
+        this.ammo = i;
     }
 }

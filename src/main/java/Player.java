@@ -7,10 +7,14 @@ public class Player {
     private Item FoodToBeRemoved = null;
     private Item RangedWeaponToBeRemoved = null;
     private Item MeleeWeaponToBeRemoved = null;
+    private boolean isRangedEquipped;
+    private boolean isMeleeEquipped;
+    private ArrayList<Item> equippedItems;
 
 
     public Player(Room currentRoom) {
         inventory = new ArrayList<>(2);
+        equippedItems = new ArrayList<>(0);
         this.currentRoom = currentRoom;
         this.health = 100;
     }
@@ -134,28 +138,54 @@ public class Player {
     public void equip(String itemName) {
         for (Item item : inventory) {
             if (item instanceof RangedWeapon rangedWeapon)
-                if (item.getName().toLowerCase().equals(itemName)) {
+                if (item.getName().toLowerCase().equals(itemName) && equippedItems.isEmpty()) {
                     this.RangedWeaponToBeRemoved = item;
                     System.out.println("You equipped " + itemName);
+                    equippedItems.add(item);
                 }
         }
-        if (RangedWeaponToBeRemoved != null)
+        if (RangedWeaponToBeRemoved != null) {
             inventory.remove(RangedWeaponToBeRemoved);
-        else System.out.println("You can't equip that item.");
-
+            this.isRangedEquipped = true;
+        } else System.out.println("You can't equip that item.");
 
         for (Item item : inventory) {
             if (item instanceof MeleeWeapon meleeWeapon)
-                if (item.getName().toLowerCase().equals(itemName)) {
+                if (item.getName().toLowerCase().equals(itemName) && equippedItems.isEmpty()) {
                     this.MeleeWeaponToBeRemoved = item;
                     System.out.println("You equipped " + itemName);
+                    equippedItems.add(item);
                 }
         }
-        if (MeleeWeaponToBeRemoved != null)
+        if (MeleeWeaponToBeRemoved != null) {
             inventory.remove(MeleeWeaponToBeRemoved);
-        else System.out.println("You can't equip that item.");
-
+            this.isMeleeEquipped = true;
+        } else System.out.println("You can't equip that item.");
     }
 
+    public void attackRanged() {
+        for (Item item : equippedItems) {
+            if (item instanceof RangedWeapon rangedWeapon) {
+                if (isRangedEquipped) {
+                    rangedWeapon.setAmmo(rangedWeapon.getAmmo() - 1);
+                    System.out.println("You attacked! Your ammo: " + rangedWeapon.getAmmo());
+                } else System.out.println("You didn't attack.");
+            }
+            //TODO
+                if (rangedWeapon.getAmmo() == 0) {
+                System.out.println("Out of ammo!");
+                equippedItems.remove(RangedWeaponToBeRemoved);
+            }
+        }
+    }
+
+    public void attackMelee() {
+        for (Item item : equippedItems)
+            if (item instanceof MeleeWeapon meleeWeapon)
+                if (isMeleeEquipped) {
+                    System.out.println("You attacked!");
+                } else System.out.println("You didn't attack.");
+    }
 
 }
+

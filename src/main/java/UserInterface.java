@@ -45,6 +45,8 @@ public class UserInterface {
                     }
                 }
                 case "eat" -> adventure.eat(argument);
+                case "attack" -> adventure.attack();
+
 
                 case "drop" -> {
                     Item itemToDrop = findItemInPlayerInventory(argument);
