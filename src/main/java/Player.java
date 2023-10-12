@@ -52,11 +52,6 @@ public class Player {
         return inventory;
     }
 
-    public int getHealth() {
-        return health;
-    }
-
-
     public void showHealth() {
         System.out.println("Your health is: " + health);
         if (health >= 50) {
@@ -164,17 +159,14 @@ public class Player {
     }
 
     public void attackRanged() {
+        if (equippedItems.isEmpty())
+            System.out.println("You don't have any items equipped.");
         for (Item item : equippedItems) {
             if (item instanceof RangedWeapon rangedWeapon) {
                 if (isRangedEquipped) {
                     rangedWeapon.setAmmo(rangedWeapon.getAmmo() - 1);
                     System.out.println("You attacked! Your ammo: " + rangedWeapon.getAmmo());
                 } else System.out.println("You didn't attack.");
-            }
-            //TODO
-                if (rangedWeapon.getAmmo() == 0) {
-                System.out.println("Out of ammo!");
-                equippedItems.remove(RangedWeaponToBeRemoved);
             }
         }
     }
@@ -186,6 +178,6 @@ public class Player {
                     System.out.println("You attacked!");
                 } else System.out.println("You didn't attack.");
     }
-
 }
+
 

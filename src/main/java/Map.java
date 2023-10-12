@@ -65,7 +65,7 @@ public class Map {
         room9.addItem(new Item("Scarab", "A golden scarab beetle, a symbol of protection and fortune."));
 
         room1.addItem(new Food("Pancake", "pandekage", 20));
-        room2.addItem(new Food("Ice Cream", "god is", 10));
+        room2.addItem(new Food("Ice", "god is", 10));
         room3.addItem(new Food("Cookie", "mhmmmm", -40));
         room4.addItem(new Food("Chicken", "God kylling", 60));
         room5.addItem(new Food("Apple", "pas på", -100));

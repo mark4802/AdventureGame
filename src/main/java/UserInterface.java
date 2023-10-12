@@ -33,7 +33,7 @@ public class UserInterface {
                 case "look" ->
                         System.out.println(adventure.getCurrentRoom().getName() + ": " + adventure.getCurrentRoom().getDescription() + "\n" + adventure.getCurrentRoom().getItems());
                 case "take" -> {
-                    if (adventure.getInventory().size() == 3) { //TODO se lige på det her
+                    if (adventure.getInventory().size() == 3) {
                         System.out.println("Your inventory is full.");
                         break;
                     }
